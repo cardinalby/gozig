@@ -11,8 +11,14 @@ import (
 )
 
 func main() {
+	zigCmd, zigCmdArgs, err := zig.GetCmd(os.Args[1:])
+	if err != nil {
+		_, _ = fmt.Fprintf(os.Stderr, err.Error())
+		os.Exit(1)
+	}
+
 	var targetArgs []string
-	if target, err := zig.GetTarget(gobuild.Os, gobuild.Arch); err == nil {
+	if target, err := zig.GetTarget(gobuild.Os, gobuild.Arch); err == nil && len(target) > 0 {
 		targetArgs = []string{"-target", target}
 	} else {
 		_, _ = fmt.Fprintf(os.Stderr, err.Error())
@@ -21,8 +27,10 @@ func main() {
 
 	sdkArgs := zig.GetPlatformArgs(gobuild.Os)
 
-	args := append(targetArgs, sdkArgs...)
-	args = append(args, os.Args[1:]...)
+	args := []string{zigCmd}
+	args = append(args, targetArgs...)
+	args = append(args, sdkArgs...)
+	args = append(args, zigCmdArgs...)
 
 	cmd := exec.Command("zig", args...)
 	cmd.Stdout = os.Stdout
