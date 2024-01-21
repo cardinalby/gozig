@@ -1,17 +1,19 @@
-# zigtool
-The golang tool of the zig compiler automatically compiles different targets according to the GOOS GOARCH environment variable. You need to install zig.
+# gozig
 
+The tool reads `GOOS` and `GOARCH` env vars and passes the corresponding `target` arguments 
+to `zig cc` and `zig c++` invocations.
 
-go install github.com/dosgo/zigtool/zigcc@latest
+To make it work with `go build` you need to set the following env vars:
+- `CC=gozig cc`
+- `CXX=gozig c++`
 
-go install github.com/dosgo/zigtool/zigcpp@latest            
+Original idea and implementation is from [zigtool](https://github.com/dosgo/zigtool)
 
+# Targets support
+`linux`, `windows`, `darwin` and `wasm` targets are supported.
 
+## Installation
 
-
-set CC=zigcc
-set CXX=zigcpp
-
-Manually set the compilation target
-
-set ZIGTARGET=x86_64-windows-gnu
+```bash
+go install github.com/cardinalby/gozig@latest
+```

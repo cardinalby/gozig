@@ -1,3 +1,3 @@
-module github.com/dosgo/zigtool
+module github.com/cardinalby/gozig
 
 go 1.17
