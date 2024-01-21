@@ -9,8 +9,13 @@ To make it work with `go build` you need to set the following env vars:
 
 Original idea and implementation is from [zigtool](https://github.com/dosgo/zigtool)
 
+This tool is used in [go-build-everywhere](https://github.com/cardinalby/go-build-everywhere) toolset.
+
 # Targets support
 `linux`, `windows`, `darwin` and `wasm` targets are supported.
+
+# Platform-specific flags
+To add MacOS SDK path use `GOZIG_OSX_SDK` env variable (will be used for `darwin` builds).
 
 ## Installation
 

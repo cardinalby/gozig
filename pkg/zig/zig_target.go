@@ -2,31 +2,15 @@ package zig
 
 import (
 	"fmt"
-	"os"
 	"runtime"
 )
 
-func GetTargetByGoEnv() (target string, err error) {
-	goos := os.Getenv("GOOS")
-	goarch := os.Getenv("GOARCH")
-	if goos == "" {
-		goos = runtime.GOOS
-	}
-	if goarch == "" {
-		goarch = runtime.GOARCH
-	}
+func GetTarget(goos, goarch string) (t string, err error) {
 	// not a cross-build
 	if goarch == runtime.GOARCH && goos == runtime.GOOS {
-		return target, nil
+		return "", nil
 	}
-	target, err = GetZigTarget(goos, goarch)
-	if err != nil {
-		return "", err
-	}
-	return target, nil
-}
 
-func GetZigTarget(goos, goarch string) (t string, err error) {
 	switch goos {
 	case "windows":
 		switch goarch {
