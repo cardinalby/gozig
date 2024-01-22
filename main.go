@@ -33,6 +33,7 @@ func main() {
 	args = append(args, zigCmdArgs...)
 
 	cmd := exec.Command("zig", args...)
+	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Env = os.Environ()
