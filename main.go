@@ -17,11 +17,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	executeZigCmd(zigArgs)
+	if isDebugMode() {
+		fmt.Printf("[Executing] %s %s\n", zig.BinaryName, fmtArgs(zigArgs))
+	}
+
+	execAndAttach(zig.BinaryName, zigArgs)
 }
 
-func executeZigCmd(args []string) {
-	cmd := exec.Command("zig", args...)
+func execAndAttach(command string, args []string) {
+	cmd := exec.Command(command, args...)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

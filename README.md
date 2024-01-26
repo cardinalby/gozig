@@ -22,3 +22,6 @@ To add MacOS SDK path use `GOZIG_OSX_SDK` env variable (will be used for `darwin
 ```bash
 go install github.com/cardinalby/gozig@latest
 ```
+
+### Debug invocations
+Set `DEBUG_EXEC=1` env variable to see the actual `zig cc` and `zig c++` invocation arguments in the output.

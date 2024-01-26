@@ -1,5 +1,7 @@
 package zig
 
+const BinaryName = "zig"
+
 func PrepareCompilerArgs(
 	appArgs []string,
 	goos string,
