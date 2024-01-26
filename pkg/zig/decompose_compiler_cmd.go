@@ -2,7 +2,7 @@ package zig
 
 import "errors"
 
-func GetCmd(args []string) (cmd string, zigCmdArgs []string, err error) {
+func DecomposeCompilerCmd(args []string) (cmdName string, cmdArgs []string, err error) {
 	if len(args) == 0 {
 		return "", nil, errors.New("no zig command provided")
 	}
